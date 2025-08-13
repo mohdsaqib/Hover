@@ -8,12 +8,11 @@ import {
   Hourglass,
   ArrowUpRight
 } from 'lucide-react';
-import { Bar } from 'react-chartjs-2';
+import { Line } from 'react-chartjs-2';
 import {
   Chart as ChartJS,
   CategoryScale,
   LinearScale,
-  BarElement,
   PointElement,
   LineElement,
   Tooltip,
@@ -24,7 +23,6 @@ import {
 ChartJS.register(
   CategoryScale,
   LinearScale,
-  BarElement,
   PointElement,
   LineElement,
   Tooltip,
@@ -75,18 +73,30 @@ export default function CAODashboard() {
       labels,
       datasets: [
         {
+          type: 'line',
           label: 'NDMC Fund (₹ Lakh)',
           data: ndmcData,
-          backgroundColor: 'rgba(14, 116, 248, 0.8)',
-          borderRadius: 6,
-          barThickness: 24
+          borderColor: 'rgba(14, 116, 248, 1)',
+          backgroundColor: 'rgba(14, 116, 248, 0.15)',
+          pointBackgroundColor: 'rgba(14, 116, 248, 1)',
+          pointBorderColor: 'rgba(14, 116, 248, 1)',
+          pointRadius: 3,
+          tension: 0.3,
+          borderWidth: 2,
+          yAxisID: 'y'
         },
         {
+          type: 'line',
           label: 'State Fund (₹ Lakh)',
           data: stateData,
-          backgroundColor: 'rgba(255, 153, 51, 0.8)',
-          borderRadius: 6,
-          barThickness: 24
+          borderColor: 'rgba(255, 153, 51, 1)',
+          backgroundColor: 'rgba(255, 153, 51, 0.15)',
+          pointBackgroundColor: 'rgba(255, 153, 51, 1)',
+          pointBorderColor: 'rgba(255, 153, 51, 1)',
+          pointRadius: 3,
+          tension: 0.3,
+          borderWidth: 2,
+          yAxisID: 'y'
         },
         {
           type: 'line',
@@ -219,7 +229,7 @@ export default function CAODashboard() {
               <small className="text-muted">FY 2025–26</small>
             </div>
             <div style={{ width: '100%', maxHeight: '400px' }}>
-              <Bar data={disbursementChartData} options={disbursementChartOptions} />
+              <Line data={disbursementChartData} options={disbursementChartOptions} />
             </div>
           </div>
         </div>
